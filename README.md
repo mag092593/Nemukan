@@ -8,7 +8,9 @@ integration or an authorized external builder, not inside Replit.
 
 The default profile targets **SDXL** and includes:
 
-- RunPod ComfyUI worker `5.11.0-sdxl`, retaining its original handler/entrypoint.
+- RunPod ComfyUI worker `5.10.0-sdxl`, pinned to its verified Linux/amd64
+  registry digest and retaining its original handler/entrypoint. A GitHub
+  release alone does not guarantee that its matching container tag exists.
 - IPAdapter Plus commit `a0f451a5113cf9becb0847b92884cb10cbdec0ef`.
 - ViT-H vision encoder, SDXL Plus style and Plus Face portrait adapters.
 - SDXL depth ControlNet (FP16 safetensors, renamed to the application contract).

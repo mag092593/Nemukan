@@ -48,6 +48,13 @@ class WorkerChecks(unittest.TestCase):
             self.assertEqual(len(model["revision"]), 40)
             self.assertEqual(len(model["sha256"]), 64)
 
+    def test_base_image_is_digest_pinned_and_matches_dockerfile(self):
+        root = Path(__file__).parent
+        manifest = json.loads((root / "models.json").read_text())
+        image = manifest["base_image"]
+        self.assertRegex(image, r"^runpod/worker-comfyui:[\d.]+-sdxl@sha256:[a-f0-9]{64}$")
+        self.assertIn("FROM " + image + "\n", (root / "Dockerfile").read_text())
+
     def test_checksum_verified_atomic_download_and_corruption_rejected(self):
         data = b"fixture bytes, not model weights"
         model = {"target": "models/ipadapter/fixture.bin", "repo": "fixture/model",

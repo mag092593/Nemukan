@@ -1,5 +1,5 @@
 # Build on RunPod or an authorized external builder, NOT in the Replit workspace.
-FROM runpod/worker-comfyui:5.11.0-sdxl
+FROM runpod/worker-comfyui:5.10.0-sdxl@sha256:32fca32cdb1a859ab836e8d67bbd283c511d39d2b30386c5867d4123652b8fd2
 USER root
 ARG ENABLE_FACEID=0
 ARG FACEID_LICENSE_CONFIRMED=0
