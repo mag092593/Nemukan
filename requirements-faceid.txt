@@ -1,0 +1,7 @@
+# External worker only. Never install these into the web app to "fix" RunPod.
+numpy==1.26.4
+Cython==3.0.12
+opencv-python==4.11.0.86
+opencv-python-headless==4.11.0.86
+insightface==0.7.3
+onnxruntime-gpu==1.23.2

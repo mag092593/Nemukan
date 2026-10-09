@@ -1,0 +1,988 @@
+{
+  "style": {
+    "1": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "sd_xl_base_1.0.safetensors"
+      }
+    },
+    "2": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "manga illustration, fictional character standing in an office",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "3": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "blurry, watermark",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "4": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 512,
+        "width": 512
+      }
+    },
+    "100": {
+      "class_type": "IPAdapterModelLoader",
+      "inputs": {
+        "ipadapter_file": "ip-adapter-plus_sdxl_vit-h.safetensors"
+      }
+    },
+    "101": {
+      "class_type": "CLIPVisionLoader",
+      "inputs": {
+        "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      }
+    },
+    "102": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "world_style_ref.png"
+      }
+    },
+    "103": {
+      "class_type": "IPAdapterAdvanced",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "ipadapter": [
+          "100",
+          0
+        ],
+        "image": [
+          "102",
+          0
+        ],
+        "clip_vision": [
+          "101",
+          0
+        ],
+        "weight": 0.3,
+        "weight_type": "ease in-out",
+        "start_at": 0,
+        "end_at": 0.9,
+        "combine_embeds": "average",
+        "embeds_scaling": "V only"
+      }
+    },
+    "sampler": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": [
+          "4",
+          0
+        ],
+        "model": [
+          "103",
+          0
+        ],
+        "negative": [
+          "3",
+          0
+        ],
+        "positive": [
+          "2",
+          0
+        ],
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "seed": 42,
+        "steps": 30
+      }
+    },
+    "decoded": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "sampler",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "output": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "nemukan_panel_",
+        "images": [
+          "decoded",
+          0
+        ]
+      }
+    }
+  },
+  "character": {
+    "1": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "sd_xl_base_1.0.safetensors"
+      }
+    },
+    "2": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "manga illustration, fictional character standing in an office",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "3": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "blurry, watermark",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "4": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 512,
+        "width": 512
+      }
+    },
+    "100": {
+      "class_type": "IPAdapterModelLoader",
+      "inputs": {
+        "ipadapter_file": "ip-adapter-plus-face_sdxl_vit-h.safetensors"
+      }
+    },
+    "101": {
+      "class_type": "CLIPVisionLoader",
+      "inputs": {
+        "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      }
+    },
+    "102": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "ref_102.png"
+      }
+    },
+    "103": {
+      "class_type": "IPAdapterAdvanced",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "ipadapter": [
+          "100",
+          0
+        ],
+        "image": [
+          "102",
+          0
+        ],
+        "clip_vision": [
+          "101",
+          0
+        ],
+        "weight": 0.75,
+        "weight_type": "ease in-out",
+        "start_at": 0,
+        "end_at": 0.9,
+        "combine_embeds": "average",
+        "embeds_scaling": "V only"
+      }
+    },
+    "sampler": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": [
+          "4",
+          0
+        ],
+        "model": [
+          "103",
+          0
+        ],
+        "negative": [
+          "3",
+          0
+        ],
+        "positive": [
+          "2",
+          0
+        ],
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "seed": 42,
+        "steps": 30
+      }
+    },
+    "decoded": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "sampler",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "output": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "nemukan_panel_",
+        "images": [
+          "decoded",
+          0
+        ]
+      }
+    }
+  },
+  "combined-depth": {
+    "1": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "sd_xl_base_1.0.safetensors"
+      }
+    },
+    "2": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "manga illustration, fictional character standing in an office",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "3": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "blurry, watermark",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "4": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 512,
+        "width": 512
+      }
+    },
+    "100": {
+      "class_type": "IPAdapterModelLoader",
+      "inputs": {
+        "ipadapter_file": "ip-adapter-plus_sdxl_vit-h.safetensors"
+      }
+    },
+    "101": {
+      "class_type": "CLIPVisionLoader",
+      "inputs": {
+        "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      }
+    },
+    "102": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "world_style_ref.png"
+      }
+    },
+    "103": {
+      "class_type": "IPAdapterAdvanced",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "ipadapter": [
+          "100",
+          0
+        ],
+        "image": [
+          "102",
+          0
+        ],
+        "clip_vision": [
+          "101",
+          0
+        ],
+        "weight": 0.3,
+        "weight_type": "ease in-out",
+        "start_at": 0,
+        "end_at": 0.9,
+        "combine_embeds": "average",
+        "embeds_scaling": "V only"
+      }
+    },
+    "104": {
+      "class_type": "IPAdapterModelLoader",
+      "inputs": {
+        "ipadapter_file": "ip-adapter-plus-face_sdxl_vit-h.safetensors"
+      }
+    },
+    "105": {
+      "class_type": "CLIPVisionLoader",
+      "inputs": {
+        "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      }
+    },
+    "106": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "ref_106.png"
+      }
+    },
+    "107": {
+      "class_type": "IPAdapterAdvanced",
+      "inputs": {
+        "model": [
+          "103",
+          0
+        ],
+        "ipadapter": [
+          "104",
+          0
+        ],
+        "image": [
+          "106",
+          0
+        ],
+        "clip_vision": [
+          "105",
+          0
+        ],
+        "weight": 0.75,
+        "weight_type": "ease in-out",
+        "start_at": 0,
+        "end_at": 0.9,
+        "combine_embeds": "average",
+        "embeds_scaling": "V only"
+      }
+    },
+    "108": {
+      "class_type": "ControlNetLoader",
+      "inputs": {
+        "control_net_name": "diffusers_xl_depth_full.safetensors"
+      }
+    },
+    "109": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "depth_109.png"
+      }
+    },
+    "110": {
+      "class_type": "ControlNetApplyAdvanced",
+      "inputs": {
+        "positive": [
+          "2",
+          0
+        ],
+        "negative": [
+          "3",
+          0
+        ],
+        "control_net": [
+          "108",
+          0
+        ],
+        "image": [
+          "109",
+          0
+        ],
+        "strength": 0.6,
+        "start_percent": 0,
+        "end_percent": 0.85,
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "sampler": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": [
+          "4",
+          0
+        ],
+        "model": [
+          "107",
+          0
+        ],
+        "negative": [
+          "110",
+          1
+        ],
+        "positive": [
+          "110",
+          0
+        ],
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "seed": 42,
+        "steps": 30
+      }
+    },
+    "decoded": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "sampler",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "output": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "nemukan_panel_",
+        "images": [
+          "decoded",
+          0
+        ]
+      }
+    }
+  },
+  "faceid": {
+    "1": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "sd_xl_base_1.0.safetensors"
+      }
+    },
+    "2": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "manga illustration, fictional character standing in an office",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "3": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "blurry, watermark",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "4": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 512,
+        "width": 512
+      }
+    },
+    "100": {
+      "class_type": "IPAdapterModelLoader",
+      "inputs": {
+        "ipadapter_file": "ip-adapter-plus-face_sdxl_vit-h.safetensors"
+      }
+    },
+    "101": {
+      "class_type": "CLIPVisionLoader",
+      "inputs": {
+        "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      }
+    },
+    "102": {
+      "class_type": "IPAdapterUnifiedLoaderFaceID",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "preset": "FACEID PLUS V2",
+        "lora_strength": 0.6,
+        "provider": "CUDA"
+      }
+    },
+    "103": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "face_103.png"
+      }
+    },
+    "104": {
+      "class_type": "IPAdapterFaceID",
+      "inputs": {
+        "model": [
+          "102",
+          0
+        ],
+        "ipadapter": [
+          "102",
+          1
+        ],
+        "image": [
+          "103",
+          0
+        ],
+        "weight": 0.8,
+        "weight_type": "ease in-out",
+        "start_at": 0,
+        "end_at": 0.9,
+        "combine_embeds": "average",
+        "embeds_scaling": "V only",
+        "weight_faceidv2": 1
+      }
+    },
+    "105": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "ref_105.png"
+      }
+    },
+    "106": {
+      "class_type": "IPAdapterAdvanced",
+      "inputs": {
+        "model": [
+          "104",
+          0
+        ],
+        "ipadapter": [
+          "100",
+          0
+        ],
+        "image": [
+          "105",
+          0
+        ],
+        "clip_vision": [
+          "101",
+          0
+        ],
+        "weight": 0.75,
+        "weight_type": "ease in-out",
+        "start_at": 0,
+        "end_at": 0.9,
+        "combine_embeds": "average",
+        "embeds_scaling": "V only"
+      }
+    },
+    "sampler": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": [
+          "4",
+          0
+        ],
+        "model": [
+          "106",
+          0
+        ],
+        "negative": [
+          "3",
+          0
+        ],
+        "positive": [
+          "2",
+          0
+        ],
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "seed": 42,
+        "steps": 30
+      }
+    },
+    "decoded": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "sampler",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "output": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "nemukan_panel_",
+        "images": [
+          "decoded",
+          0
+        ]
+      }
+    }
+  },
+  "sheet": {
+    "1": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "sd_xl_base_1.0.safetensors"
+      }
+    },
+    "2": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, duplicate, watermark, text, signature, frame, border, extra characters, multiple characters, blurry, out of focus",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "10": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "character design sheet, manga style, anime art style, character turnaround, Fixture character, black short hair, brown eyes, plain suit, facing viewer, full body, front view, neutral expression, looking at viewer, simple white background, masterpiece, best quality, sharp lineart, clean lines, highly detailed",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "11": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 1024,
+        "width": 512
+      }
+    },
+    "12": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": [
+          "11",
+          0
+        ],
+        "model": [
+          "53",
+          0
+        ],
+        "negative": [
+          "2",
+          0
+        ],
+        "positive": [
+          "10",
+          0
+        ],
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "seed": 42,
+        "steps": 30
+      }
+    },
+    "13": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "12",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "14": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "character design sheet, manga style, anime art style, character turnaround, Fixture character, black short hair, brown eyes, plain suit, 3/4 view, slight turn left, full body, confident expression, simple white background, masterpiece, best quality, sharp lineart, clean lines, highly detailed",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "15": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 1024,
+        "width": 512
+      }
+    },
+    "16": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": [
+          "15",
+          0
+        ],
+        "model": [
+          "53",
+          0
+        ],
+        "negative": [
+          "2",
+          0
+        ],
+        "positive": [
+          "14",
+          0
+        ],
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "seed": 43,
+        "steps": 30
+      }
+    },
+    "17": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "16",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "18": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "character design sheet, manga style, anime art style, character turnaround, Fixture character, black short hair, brown eyes, plain suit, profile view, facing right, full body, side view, neutral expression, simple white background, masterpiece, best quality, sharp lineart, clean lines, highly detailed",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "19": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 1024,
+        "width": 512
+      }
+    },
+    "20": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": [
+          "19",
+          0
+        ],
+        "model": [
+          "53",
+          0
+        ],
+        "negative": [
+          "2",
+          0
+        ],
+        "positive": [
+          "18",
+          0
+        ],
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "seed": 44,
+        "steps": 30
+      }
+    },
+    "21": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "20",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "22": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "character design sheet, manga style, anime art style, character turnaround, Fixture character, black short hair, brown eyes, plain suit, back view, facing away from viewer, full body, simple white background, masterpiece, best quality, sharp lineart, clean lines, highly detailed",
+        "clip": [
+          "1",
+          1
+        ]
+      }
+    },
+    "23": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "batch_size": 1,
+        "height": 1024,
+        "width": 512
+      }
+    },
+    "24": {
+      "class_type": "KSampler",
+      "inputs": {
+        "cfg": 7,
+        "denoise": 1,
+        "latent_image": [
+          "23",
+          0
+        ],
+        "model": [
+          "53",
+          0
+        ],
+        "negative": [
+          "2",
+          0
+        ],
+        "positive": [
+          "22",
+          0
+        ],
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "seed": 45,
+        "steps": 30
+      }
+    },
+    "25": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "24",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      }
+    },
+    "50": {
+      "class_type": "IPAdapterModelLoader",
+      "inputs": {
+        "ipadapter_file": "ip-adapter-plus_sdxl_vit-h.safetensors"
+      }
+    },
+    "51": {
+      "class_type": "CLIPVisionLoader",
+      "inputs": {
+        "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      }
+    },
+    "52": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "world_style_ref.png"
+      }
+    },
+    "53": {
+      "class_type": "IPAdapterAdvanced",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "ipadapter": [
+          "50",
+          0
+        ],
+        "image": [
+          "52",
+          0
+        ],
+        "clip_vision": [
+          "51",
+          0
+        ],
+        "weight": 0.3,
+        "weight_type": "ease in-out",
+        "start_at": 0,
+        "end_at": 0.9,
+        "combine_embeds": "average",
+        "embeds_scaling": "V only"
+      }
+    },
+    "90": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "character_sheet_0_front",
+        "images": [
+          "13",
+          0
+        ]
+      }
+    },
+    "91": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "character_sheet_0_three_quarter",
+        "images": [
+          "17",
+          0
+        ]
+      }
+    },
+    "92": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "character_sheet_0_side",
+        "images": [
+          "21",
+          0
+        ]
+      }
+    },
+    "93": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "character_sheet_0_back",
+        "images": [
+          "25",
+          0
+        ]
+      }
+    }
+  }
+}

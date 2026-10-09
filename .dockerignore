@@ -1,0 +1,7 @@
+**/.git
+**/__pycache__
+*.pyc
+*.part
+*.zip
+test_verify_worker.py
+README.md

@@ -1,0 +1,56 @@
+{
+  "base_image": "runpod/worker-comfyui:5.11.0-sdxl",
+  "ipadapter_commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+  "models": [
+    {
+      "target": "models/clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+      "repo": "h94/IP-Adapter",
+      "revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "file": "models/image_encoder/model.safetensors",
+      "sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+      "size": 2528373448
+    },
+    {
+      "target": "models/ipadapter/ip-adapter-plus_sdxl_vit-h.safetensors",
+      "repo": "h94/IP-Adapter",
+      "revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "file": "sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors",
+      "sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+      "size": 847517512
+    },
+    {
+      "target": "models/ipadapter/ip-adapter-plus-face_sdxl_vit-h.safetensors",
+      "repo": "h94/IP-Adapter",
+      "revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "file": "sdxl_models/ip-adapter-plus-face_sdxl_vit-h.safetensors",
+      "sha256": "677ad8860204f7d0bfba12d29e6c31ded9beefdf3e4bbd102518357d31a292c1",
+      "size": 847517512
+    },
+    {
+      "target": "models/controlnet/diffusers_xl_depth_full.safetensors",
+      "repo": "diffusers/controlnet-depth-sdxl-1.0",
+      "revision": "17bb97973f29801224cd66f192c5ffacf82648b4",
+      "file": "diffusion_pytorch_model.fp16.safetensors",
+      "sha256": "66a6813e6bd7270ecfe68206a59ddd605a011ae85321188376605c66e0a4f303",
+      "size": 2502139134
+    },
+    {
+      "profile": "faceid",
+      "target": "models/ipadapter/ip-adapter-faceid-plusv2_sdxl.bin",
+      "repo": "h94/IP-Adapter-FaceID",
+      "revision": "43907e6f44d079bf1a9102d9a6e56aef7a219bae",
+      "file": "ip-adapter-faceid-plusv2_sdxl.bin",
+      "sha256": "c6945d82b543700cc3ccbb98d363b837e9c596281607857c74b713a876daf5fb",
+      "size": 1487555181
+    },
+    {
+      "profile": "faceid",
+      "target": "models/loras/ip-adapter-faceid-plusv2_sdxl_lora.safetensors",
+      "repo": "h94/IP-Adapter-FaceID",
+      "revision": "43907e6f44d079bf1a9102d9a6e56aef7a219bae",
+      "file": "ip-adapter-faceid-plusv2_sdxl_lora.safetensors",
+      "sha256": "f24b4bb2dad6638a09c00f151cde84991baf374409385bcbab53c1871a30cb7b",
+      "size": 371842896
+    }
+  ]
+}
